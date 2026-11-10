@@ -1,0 +1,209 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>つぎめ｜割れた思い出を、金で継ぐ</title>
+<meta name="description" content="割れてしまった思い出を、金継ぎの工程どおりにゆっくり継いで、世界にひとつの器にする小さな工房。書いた言葉はあなたの端末の中だけに残ります。">
+<meta name="theme-color" content="#f5efe3">
+<meta property="og:title" content="つぎめ｜割れた思い出を、金で継ぐ">
+<meta property="og:description" content="割れてしまった思い出を、金継ぎの工程どおりに継いで、世界にひとつの器に。">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://koheiitoh.github.io/tsugime/">
+<meta property="og:image" content="https://koheiitoh.github.io/tsugime/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<a class="skip" href="#main">本文へ移動</a>
+<header class="top">
+  <a class="brand" href="#" aria-label="つぎめ トップへ">
+    <svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="13" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M11 4 L14 11 L12 16 L16 21 L15 28" fill="none" stroke="#c9972f" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    <span>つぎめ</span>
+  </a>
+  <a class="shelf-link" href="#shelf">棚<span id="shelfCount" class="count" aria-label="器の数"></span></a>
+</header>
+
+<main id="main">
+  <!-- イントロ -->
+  <section id="view-intro" class="view" aria-labelledby="h-intro">
+    <div class="hero-bowl" id="heroBowl" aria-hidden="true"></div>
+    <h1 id="h-intro" tabindex="-1">割れた思い出を、<br>金で継ごう。</h1>
+    <p class="lead">金継ぎは、割れた器を漆でつなぎ、継ぎ目に金を蒔いて、傷あとを「景色」として愛でる日本の技法です。つぎめでは、器のかわりに思い出を継ぎます。</p>
+    <ol class="how">
+      <li><b>かけらを拾う</b><span>つらかったことを書くと、器にひびが入ります。</span></li>
+      <li><b>金で継ぐ</b><span>そこから得たものを書くと、ひびが金の線に変わります。</span></li>
+      <li><b>棚に飾る</b><span>名前（銘）をつけて飾ります。金は日がたつほどなじみます。</span></li>
+    </ol>
+    <div class="actions">
+      <button class="btn primary" id="btnStart" type="button">器をえらぶ</button>
+      <button class="btn" id="btnResume" type="button" hidden>続きから継ぐ</button>
+    </div>
+    <p class="note">かかる時間は10分ほど。書いた言葉はこの端末のブラウザの中だけに保存され、どこにも送られません。</p>
+  </section>
+
+  <!-- 工房 -->
+  <section id="view-studio" class="view" hidden aria-labelledby="h-studio">
+    <h2 id="h-studio" class="vh" tabindex="-1">工房</h2>
+    <ol class="progress" id="progress" aria-label="工程"></ol>
+    <div class="preview" id="preview" aria-hidden="true"></div>
+    <p class="sr-only" aria-live="polite" id="live"></p>
+
+    <div class="panel" data-step="0">
+      <h3 class="step-title" tabindex="-1">一、器をえらぶ</h3>
+      <fieldset>
+        <legend>どんな思い出を継ぎますか</legend><div class="seg">
+        <label><input type="radio" name="mode" value="self" checked><span>自分の思い出</span></label>
+        <label><input type="radio" name="mode" value="together"><span>だれかとの思い出</span></label>
+      </div></fieldset>
+      <fieldset>
+        <legend>器</legend><div class="cards">
+        <label><input type="radio" name="vessel" value="chawan" checked><span><i data-mini="chawan"></i>茶碗<small>大きな思い出に</small></span></label>
+        <label><input type="radio" name="vessel" value="yunomi"><span><i data-mini="yunomi"></i>湯のみ<small>毎日の小さなひびに</small></span></label>
+        <label><input type="radio" name="vessel" value="mamezara"><span><i data-mini="mamezara"></i>豆皿<small>ちょっとした失敗に</small></span></label>
+      </div></fieldset>
+      <fieldset>
+        <legend>釉薬（いろ）</legend><div class="glazes">
+        <label><input type="radio" name="glaze" value="hakuji" checked><span><i style="--c:#f3efe6"></i>白磁</span></label>
+        <label><input type="radio" name="glaze" value="seiji"><span><i style="--c:#a9c7b5"></i>青磁</span></label>
+        <label><input type="radio" name="glaze" value="shino"><span><i style="--c:#ecd2b4"></i>志野</span></label>
+        <label><input type="radio" name="glaze" value="kokuyu"><span><i style="--c:#2e2a28"></i>黒釉</span></label>
+      </div></fieldset>
+      <div class="field">
+        <label for="fTitle">思い出の名札</label>
+        <input id="fTitle" type="text" maxlength="40" autocomplete="off" aria-describedby="eTitle">
+        <p class="err" id="eTitle" hidden>名札をひとこと書くと、次へ進めます。</p>
+      </div>
+      <div class="row2">
+        <div class="field"><label for="fWhen">いつのこと <small>任意</small></label><input id="fWhen" type="text" maxlength="30" autocomplete="off" placeholder="例：2019年の3月"></div>
+        <div class="field"><label for="fWhere">どこで <small>任意</small></label><input id="fWhere" type="text" maxlength="20" autocomplete="off" placeholder="例：駒込駅のホーム"></div>
+      </div>
+      <p class="hint">「どこで」と「いつ」は、最後に器の名前（銘）に使われます。</p>
+    </div>
+
+    <div class="panel" data-step="1" hidden>
+      <h3 class="step-title" tabindex="-1">二、かけらを拾う</h3>
+      <p class="intro">まずは割れたかけらを拾います。書くと、器にひびが入ります。</p>
+      <div id="shardFields"></div>
+      <p class="err" id="eShard" hidden>ひとつめだけは、ひとことでも書いてみてください。</p>
+    </div>
+
+    <div class="panel" data-step="2" hidden>
+      <h3 class="step-title" tabindex="-1">三、漆で継ぐ</h3>
+      <p class="intro">ひびに漆を差し、金を蒔きます。答えるたびに、ひびが一本ずつ金の線に変わります。</p>
+      <div id="goldFields"></div>
+      <p class="meter" id="goldMeter"></p>
+      <p class="err" id="eGold" hidden>ひとつめに答えると、最初の金の線が入ります。</p>
+    </div>
+
+    <div class="panel" data-step="3" hidden>
+      <h3 class="step-title" tabindex="-1">四、室で休ませる</h3>
+      <p class="intro">本物の漆は、湿った「室（むろ）」で何日もかけて固まります。ここでは1分だけ、呼吸に合わせて器を休ませましょう。</p>
+      <div class="kiln" id="kiln">
+        <svg viewBox="0 0 200 200" aria-hidden="true"><circle class="ring-bg" cx="100" cy="100" r="92"/><circle class="ring" id="kilnRing" cx="100" cy="100" r="92" pathLength="1"/></svg>
+        <div class="breath" id="breath"></div>
+        <div class="kiln-text"><b id="kilnWord">室</b><span id="kilnSub">1分、器を休ませます</span></div>
+      </div>
+    </div>
+
+    <div class="panel" data-step="4" hidden>
+      <h3 class="step-title" tabindex="-1">五、銘をつける</h3>
+      <p class="intro">継ぎ終えた器には「銘」という名前をつけます。土地と季節のことばから選んでみました。自由に書き換えてください。</p>
+      <div class="chips" id="meiChips" role="group" aria-label="銘の候補"></div>
+      <div class="field"><label for="fMei">銘</label><input id="fMei" type="text" maxlength="24" autocomplete="off"></div>
+      <p class="hint" id="restNote"></p>
+    </div>
+
+    <div class="nav">
+      <button class="btn" id="btnBack" type="button">もどる</button>
+      <button class="btn primary" id="btnNext" type="button">次へ</button>
+    </div>
+    <p class="autosave">書きかけは自動で残ります。何日かに分けて継いでも大丈夫です。</p>
+  </section>
+
+  <!-- 完成 -->
+  <section id="view-done" class="view" hidden aria-labelledby="h-done">
+    <p class="kicker">継ぎあがりました</p>
+    <div class="done-bowl" id="doneBowl"></div>
+    <h2 id="h-done" tabindex="-1" class="mei"></h2>
+    <p class="meta" id="doneMeta"></p>
+    <div class="actions">
+      <button class="btn primary" id="btnDoneShare" type="button">画像にして残す</button>
+      <a class="btn" href="#shelf">棚を見る</a>
+    </div>
+    <button class="link" id="btnAnother" type="button">もうひとつ継ぐ</button>
+  </section>
+
+  <!-- 棚 -->
+  <section id="view-shelf" class="view" hidden aria-labelledby="h-shelf">
+    <h2 id="h-shelf" tabindex="-1">わたしの棚</h2>
+    <p class="sub" id="shelfSub"></p>
+    <ul class="shelf" id="shelfList"></ul>
+    <div class="empty" id="shelfEmpty" hidden>
+      <p>まだ器はありません。最初のひとつを継いでみませんか。</p>
+      <button class="btn primary" type="button" data-go="start">器をえらぶ</button>
+    </div>
+    <details class="backup">
+      <summary>棚の控えをとる・戻す</summary>
+      <p>機種変更やブラウザの掃除に備えて、棚をファイルに書き出せます。中身はあなたの言葉そのものなので、扱いに気をつけてください。</p>
+      <div class="actions">
+        <button class="btn" id="btnExport" type="button">控えを書き出す</button>
+        <label class="btn" for="fImport">控えから戻す</label>
+        <input id="fImport" type="file" accept="application/json,.json" class="sr-only">
+      </div>
+      <p class="hint" id="importMsg" role="status"></p>
+    </details>
+  </section>
+
+  <!-- 箱書き -->
+  <section id="view-piece" class="view" hidden aria-labelledby="h-piece">
+    <a class="back" href="#shelf">← 棚にもどる</a>
+    <div class="done-bowl" id="pieceBowl"></div>
+    <p class="kicker">銘</p>
+    <h2 id="h-piece" tabindex="-1" class="mei"></h2>
+    <p class="meta" id="pieceAge"></p>
+    <dl class="box" id="pieceProps"></dl>
+    <h3 class="sec">金の継ぎ目に入っていることば</h3>
+    <ul class="words" id="pieceGolds"></ul>
+    <details class="shards" id="pieceShardsWrap">
+      <summary>継ぐ前のかけら</summary>
+      <ul class="words dim" id="pieceShards"></ul>
+    </details>
+    <div class="actions">
+      <button class="btn primary" id="btnPieceShare" type="button">画像にして残す</button>
+      <button class="btn danger" id="btnDelete" type="button">棚からおろす</button>
+    </div>
+  </section>
+</main>
+
+<dialog id="share" aria-labelledby="h-share">
+  <div class="dlg">
+    <h2 id="h-share">画像にして残す</h2>
+    <img id="shareImg" alt="器の画像のプレビュー">
+    <fieldset class="opts">
+      <legend>画像に入れるもの</legend>
+      <label><input type="checkbox" id="oPlace" checked> 場所</label>
+      <label><input type="checkbox" id="oWhen" checked> いつ・季節</label>
+      <label><input type="checkbox" id="oWords"> 金のことば（あなたが書いた文章）</label>
+    </fieldset>
+    <p class="hint">銘と器の絵だけが標準です。書いた文章は、チェックを入れたときだけ画像に入ります。画像はこの端末の中で作られます。</p>
+    <div class="actions">
+      <button class="btn primary" id="btnDownload" type="button">画像を保存</button>
+      <button class="btn" id="btnNativeShare" type="button" hidden>共有する</button>
+      <button class="btn" id="btnClose" type="button">閉じる</button>
+    </div>
+  </div>
+</dialog>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<footer class="foot">
+  <p>つらい出来事を書き、そこから得たものを見つける筆記（ベネフィット・ファインディング）は、気分や幸福感を高めるという研究があります。つぎめは、その流れを金継ぎの工程に重ねました。</p>
+  <p>書いていて苦しくなったら、途中でやめて大丈夫です。重いつらさが続くときは、信頼できる人や専門の相談先を頼ってください。</p>
+  <p class="refs">参考：<a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC7957853/" rel="noopener" target="_blank">筆記の効果（PMC）</a> ・ <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC12094736/" rel="noopener" target="_blank">ポジティブな筆記のレビュー（PMC）</a></p>
+  <p class="small">アカウント不要・通信なし。データはこの端末のブラウザにだけ保存されます。</p>
+</footer>
+<script src="app.js"></script>
+</body>
+</html>
